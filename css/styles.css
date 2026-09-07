@@ -1,0 +1,591 @@
+/* =========================================================
+   Magazine World Zig — Link na Bio
+   Identidade visual: preto (#0A0A0A), branco (#FFFFFF) e
+   azul WZ (#1A4DFF). Squada One para títulos, Montserrat
+   para texto corrido.
+   ========================================================= */
+
+:root{
+  --bg: #0a0a0a;
+  --card: #15161d;
+  --card-alt: #1c1e28;
+  --blue: #1a4dff;
+  --blue-light: #6d8bff;
+  --blue-dark: #0c2699;
+  --yellow: #ffc72c;
+  --ink: #14161f;
+  --whatsapp: #25d366;
+  --whatsapp-dark: #0f7a3d;
+  --white: #ffffff;
+  --muted: #9aa0ac;
+  --line: rgba(255,255,255,.08);
+
+  --radius-lg: 24px;
+  --radius-md: 16px;
+  --radius-sm: 12px;
+  --shadow: 0 12px 30px rgba(0,0,0,.4);
+
+  --maxw: 460px;
+  --gap: 44px;
+
+  --font-display: 'Squada One', system-ui, sans-serif;
+  --font-body: 'Montserrat', system-ui, sans-serif;
+}
+
+*{ box-sizing: border-box; }
+
+html{ scroll-behavior: smooth; }
+
+body{
+  margin: 0;
+  background: var(--bg);
+  color: var(--white);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* textura sutil de fundo */
+.bg-pattern{
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image: repeating-linear-gradient(
+    135deg,
+    rgba(255,255,255,.035) 0px,
+    rgba(255,255,255,.035) 1px,
+    transparent 1px,
+    transparent 64px
+  );
+}
+
+.page{
+  position: relative;
+  z-index: 1;
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 40px 20px 64px;
+  min-height: 100vh;
+  transition: max-width .2s ease;
+}
+
+.screen{ display: none; }
+.screen.is-active{ display: block; }
+
+/* ---------- header ---------- */
+.header{
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+.logo-badge{
+  position: relative;
+  width: 176px;
+  margin: 0 auto 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo-badge::before{
+  content: "";
+  position: absolute;
+  inset: -18%;
+  z-index: -1;
+  background: radial-gradient(circle, rgba(26,77,255,.38) 0%, rgba(26,77,255,0) 70%);
+}
+
+.logo-badge img{
+  width: 100%;
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 10px 26px rgba(26,77,255,.4));
+}
+
+.eyebrow{
+  margin: 0 0 8px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--blue-light);
+}
+
+.brand-title{
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(28px, 6vw, 40px);
+  line-height: 1.08;
+  letter-spacing: .02em;
+  color: var(--white);
+}
+
+.tagline{
+  margin: 10px 0 26px;
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.shortcuts{
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.shortcut-btn{
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  color: var(--white);
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 13px;
+  padding: 12px 18px;
+  border-radius: 999px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background .15s ease, transform .15s ease;
+}
+
+.shortcut-btn:hover{
+  background: var(--card-alt);
+  transform: translateY(-1px);
+}
+
+.shortcut-btn svg{
+  width: 16px;
+  height: 16px;
+  flex: none;
+}
+
+/* ---------- grid de conteúdo (mobile: pilha única) ---------- */
+.content-grid{
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap);
+  margin-top: var(--gap);
+}
+
+.section{ scroll-margin-top: 24px; }
+
+.section-title{
+  margin: 0 0 16px;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(24px, 4vw, 30px);
+  color: var(--white);
+}
+
+.section-subtitle{
+  margin: 0 0 20px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+/* ---------- card da coleção ---------- */
+.collection-card{
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: none;
+  border-radius: var(--radius-lg);
+  background: linear-gradient(135deg, var(--blue) 0%, var(--blue-dark) 100%);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  cursor: pointer;
+  text-align: left;
+  font-family: inherit;
+  color: inherit;
+  transition: transform .15s ease;
+}
+
+.collection-card:hover{ transform: translateY(-2px); }
+
+.badge{
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 5px 10px;
+  border-radius: 999px;
+}
+
+.badge--best{
+  background: var(--yellow);
+  color: var(--ink);
+}
+
+.collection-card__body{
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 30px 20px 22px;
+}
+
+.collection-card__icon{
+  width: 52px;
+  height: 52px;
+  flex: none;
+  border-radius: 16px;
+  background: rgba(255,255,255,.16);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.collection-card__icon svg{ width: 24px; height: 24px; color: #fff; }
+
+.collection-card__text{ flex: 1; min-width: 0; }
+
+.collection-card__title{
+  display: block;
+  font-weight: 700;
+  font-size: 17px;
+  color: #fff;
+}
+
+.collection-card__desc{
+  display: block;
+  margin-top: 2px;
+  font-size: 13px;
+  color: rgba(255,255,255,.75);
+}
+
+.chevron{
+  font-size: 28px;
+  line-height: 1;
+  color: rgba(255,255,255,.85);
+}
+
+/* ---------- onde comprar ---------- */
+.link-list{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.link-row{
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  text-decoration: none;
+  color: var(--white);
+  transition: background .15s ease, transform .15s ease;
+}
+
+.link-row:hover{
+  background: var(--card-alt);
+  transform: translateY(-1px);
+}
+
+.link-row__icon{
+  width: 42px;
+  height: 42px;
+  flex: none;
+  border-radius: 12px;
+  background: rgba(26,77,255,.16);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.link-row__icon svg{ width: 20px; height: 20px; color: var(--blue-light); }
+
+.link-row__label{
+  flex: 1;
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.link-row__cta{
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--muted);
+  flex: none;
+}
+
+.link-row__cta svg{ width: 14px; height: 14px; }
+
+/* ---------- atendimento / whatsapp ---------- */
+.section--atendimento{ text-align: center; }
+
+.whatsapp-btn{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+  background: linear-gradient(135deg, var(--whatsapp) 0%, var(--whatsapp-dark) 100%);
+  color: #fff;
+  font-weight: 800;
+  font-size: 16px;
+  padding: 19px 22px;
+  border-radius: 999px;
+  text-decoration: none;
+  box-shadow: 0 14px 32px rgba(15,122,61,.4);
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+
+.whatsapp-btn:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 18px 38px rgba(15,122,61,.5);
+}
+
+.whatsapp-btn__icon{
+  display: inline-flex;
+  width: 26px;
+  height: 26px;
+  flex: none;
+}
+
+.whatsapp-btn__icon svg{ width: 100%; height: 100%; }
+
+.whatsapp-btn__text{ letter-spacing: .01em; }
+
+/* ---------- telas secundárias (coleção / avaliações) ---------- */
+.back-btn{
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: none;
+  border: none;
+  color: var(--white);
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 14px;
+  padding: 8px 0;
+  margin-bottom: 24px;
+  cursor: pointer;
+}
+
+.back-btn svg{ width: 18px; height: 18px; }
+
+.collection-header{
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.product-grid{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+}
+
+.product-card{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  padding: 14px;
+  text-align: center;
+  text-decoration: none;
+  color: var(--white);
+  transition: background .15s ease, transform .15s ease;
+}
+
+.product-card:hover{
+  background: var(--card-alt);
+  transform: translateY(-2px);
+}
+
+.product-card__image{
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: var(--radius-sm);
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.product-card__image img{
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 10px;
+}
+
+.product-card__name{
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.35;
+  min-height: 34px;
+}
+
+.product-card__btn{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-top: auto;
+  background: linear-gradient(135deg, var(--blue) 0%, var(--blue-dark) 100%);
+  color: #fff;
+  font-weight: 700;
+  font-size: 12px;
+  padding: 12px 12px;
+  border-radius: 999px;
+}
+
+.product-card__btn svg{ width: 12px; height: 12px; }
+
+/* ---------- avaliações (estado vazio) ---------- */
+.reviews-empty{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 14px;
+  background: var(--card);
+  border: 1px dashed var(--line);
+  border-radius: var(--radius-lg);
+  padding: 48px 28px;
+}
+
+.reviews-empty__icon{
+  width: 44px;
+  height: 44px;
+  color: var(--blue-light);
+}
+
+.reviews-empty__icon svg{ width: 100%; height: 100%; }
+
+.reviews-empty__text{
+  margin: 0;
+  max-width: 360px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+/* ---------- rodapé do site ---------- */
+.site-footer{
+  position: relative;
+  z-index: 1;
+  border-top: 1px solid var(--line);
+  padding: 28px 20px;
+}
+
+.site-footer__inner{
+  max-width: var(--maxw);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  text-align: center;
+}
+
+.site-footer__brand{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 700;
+  font-size: 13px;
+  color: var(--white);
+}
+
+.site-footer__logo{
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+}
+
+.site-footer__rights{
+  margin: 0;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+/* =========================================================
+   RESPONSIVO
+   ========================================================= */
+
+/* tablet: mais respiro, grade de produtos em 3 colunas */
+@media (min-width: 640px){
+  :root{ --maxw: 620px; }
+
+  .product-grid{ grid-template-columns: repeat(3, 1fr); }
+}
+
+/* desktop: composição própria, aproveitando a largura */
+@media (min-width: 1024px){
+  :root{
+    --maxw: 1180px;
+    --gap: 32px;
+  }
+
+  .page{ padding: 72px 48px 64px; }
+
+  .header{
+    display: flex;
+    align-items: center;
+    gap: 48px;
+    text-align: left;
+    margin-bottom: 0;
+  }
+
+  .logo-badge{
+    width: 220px;
+    margin: 0;
+    flex: none;
+  }
+
+  .header-text{ flex: 1; }
+
+  .shortcuts{ justify-content: flex-start; }
+
+  .content-grid{
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    grid-template-areas:
+      "colecao comprar"
+      "atendimento atendimento";
+    align-items: start;
+  }
+
+  .section--colecao{ grid-area: colecao; }
+  .section--comprar{ grid-area: comprar; }
+  .section--atendimento{ grid-area: atendimento; margin-top: 8px; }
+
+  .collection-card__body{ padding: 40px 32px 30px; }
+  .collection-card__icon{ width: 64px; height: 64px; }
+  .collection-card__icon svg{ width: 30px; height: 30px; }
+  .collection-card__title{ font-size: 20px; }
+  .collection-card__desc{ font-size: 14px; }
+
+  .link-row{ padding: 18px 20px; }
+
+  .whatsapp-btn{ max-width: 640px; margin: 0 auto; }
+
+  .product-grid{ grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); }
+
+  .site-footer{ padding: 32px 48px; }
+
+  .site-footer__inner{
+    max-width: var(--maxw);
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: left;
+  }
+}
+

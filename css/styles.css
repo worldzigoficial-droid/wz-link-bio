@@ -464,6 +464,31 @@ body{
 
 .stars--lg .star-icon{ width: 20px; height: 20px; }
 
+.star-icon--empty{ color: rgba(255,199,44,.28); }
+
+.star-half{
+  position: relative;
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  flex: none;
+}
+
+.star-half .star-icon{
+  position: absolute;
+  inset: 0;
+  width: 15px;
+  height: 15px;
+}
+
+.star-half__fill{
+  position: absolute;
+  inset: 0;
+  width: 50%;
+  overflow: hidden;
+  display: block;
+}
+
 .reviews-summary{
   display: flex;
   align-items: center;
